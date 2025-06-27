@@ -1,0 +1,23 @@
+{% extends 'base-logout.html.twig' %}
+
+{% block title %}Inscription - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div id="register-container">
+        <h1>S'inscrire</h1>
+
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+
+            <button type="submit" class="button button-submit">Continuer</button>
+        {{ form_end(registrationForm) }}
+        <p class="register-link">
+            <a href="{{ path('app_register') }}">Vous avez déjà un compte ?</a>
+        </p>
+    </div>
+{% endblock %}
