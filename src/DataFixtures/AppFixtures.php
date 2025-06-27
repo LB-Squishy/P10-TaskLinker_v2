@@ -23,19 +23,21 @@ class AppFixtures extends Fixture
         $doing = new Statut();
         $doing->setLibelle('Doing');
         $manager->persist($doing);
-        
+
         $done = new Statut();
         $done->setLibelle('Done');
         $manager->persist($done);
 
-        
+
         // Création des employés
         $employe1 = new Employe();
         $employe1->setNom('Dillon')
             ->setPrenom('Natalie')
             ->setEmail('natalie@driblet.com')
             ->setStatut('CDI')
-            ->setDateArrivee(new DateTime('2019-06-14'));
+            ->setDateArrivee(new DateTime('2019-06-14'))
+            ->setRoles(['ROLE_ADMIN'])
+            ->setPassword('password');
         $manager->persist($employe1);
 
         $employe2 = new Employe();
@@ -43,7 +45,9 @@ class AppFixtures extends Fixture
             ->setPrenom('Demi')
             ->setEmail('demi@driblet.com')
             ->setStatut('CDD')
-            ->setDateArrivee(new DateTime('2022-09-01'));
+            ->setDateArrivee(new DateTime('2022-09-01'))
+            ->setRoles(['ROLE_USER'])
+            ->setPassword('password');
         $manager->persist($employe2);
 
         $employe3 = new Employe();
@@ -51,7 +55,9 @@ class AppFixtures extends Fixture
             ->setPrenom('Marie')
             ->setEmail('marie@driblet.com')
             ->setStatut('Freelance')
-            ->setDateArrivee(new DateTime('2021-12-20'));
+            ->setDateArrivee(new DateTime('2021-12-20'))
+            ->setRoles(['ROLE_USER'])
+            ->setPassword('password');
         $manager->persist($employe3);
 
         // Création des projets
