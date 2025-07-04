@@ -1,0 +1,16 @@
+{% extends 'base-logout.html.twig' %}
+
+{% block title %}Bienvenue - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div id="register-container">
+        <h1>Bienvenue sur TaskLinker</h1>
+        <p class="register-text">Commencez dès maintenant - gratuitement</p>
+        <p>Vous avez déjà un compte ?</p>
+        <a href="{{ path('app_login') }}" class="button button-login">Se connecter</a>
+        <div class="welcome-separator">
+            <hr>ou<hr>
+        </div>
+        <a href="{{ path('app_register') }}" class="button button-register">S'inscrire</a>
+    </div>
+{% endblock %}

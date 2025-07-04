@@ -86,7 +86,8 @@ header {
 }
 
 div#current-user {
-    height: 55px;
+    display: flex;
+    justify-content: right;
 }
 
 div#title-page h1 {
@@ -190,6 +191,7 @@ div#projects-container {
     align-items: center;
     justify-content: center;
     margin-left: -12px;
+    text-transform: uppercase;
     background: #1c5b50;
     border: 1px solid lightgray;
 }
@@ -315,6 +317,7 @@ a.task p {
     font-size: 8px;
     font-weight: 700;
     line-height: 8px;
+    text-transform: uppercase;
     color: #ffffff;
 }
 
@@ -371,6 +374,7 @@ table#team-container tr td {
     font-weight: 700;
     line-height: 24px;
     letter-spacing: 0em;
+    text-transform: uppercase;
     text-align: center;
     color: #fff;
     background: #1c5b50;
@@ -607,6 +611,84 @@ form .select2-container--default .select2-selection--multiple .select2-selection
 .register-link a {
     color: #ffffff;
     font-size: 14px;
+}
+
+.button-login {
+    width: 224px;
+    background: #1f5b50;
+    border-radius: 10px;
+    font-family: Manrope;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    justify-content: center;
+    border: none;
+    color: #ffffff;
+    height: 70px;
+    margin-top: 16px;
+}
+
+.button-register {
+    width: 224px;
+    color: #1f5b50 !important;
+    border-radius: 10px;
+    font-family: Manrope;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    justify-content: center;
+    border: none;
+    color: #ffffff;
+    height: 70px;
+}
+
+.welcome-separator {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 24px 0;
+    gap: 24px;
+}
+
+.welcome-separator hr {
+    flex: none;
+    width: 139px;
+    height: 1px;
+    background: #d9d9d9;
+    border: none;
+    margin: 0;
+}
+
+.register-text {
+    margin: 3px 0 64px 0;
+}
+
+div#current-user .avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    background: white;
+    text-transform: uppercase;
+    color: #1c5b50;
+    border: 1px solid #1c5b50;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+div#current-user .avatar:hover {
+    background: #1c5b50;
+    color: #fff;
+    transform: scale(1.2);
+    border: 1px solid white;
 }
 
 @media (max-width: 992px) {
