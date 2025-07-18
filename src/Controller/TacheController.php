@@ -28,6 +28,10 @@ class TacheController extends AbstractController
     {
         $projet = $this->projetRepository->find($id);
 
+        if ($projet) {
+            $this->denyAccessUnlessGranted('projet.is_member', $projet);
+        }
+
         if (!$projet || $projet->isArchive()) {
             return $this->redirectToRoute('app_projets');
         }
@@ -54,6 +58,10 @@ class TacheController extends AbstractController
     {
         $tache = $this->tacheRepository->find($id);
 
+        if ($tache) {
+            $this->denyAccessUnlessGranted('projet.is_member', $tache);
+        }
+
         if (!$tache || $tache->getProjet()->isArchive()) {
             return $this->redirectToRoute('app_projets');
         }
@@ -68,6 +76,10 @@ class TacheController extends AbstractController
     public function tache(int $id, Request $request): Response
     {
         $tache = $this->tacheRepository->find($id);
+
+        if ($tache) {
+            $this->denyAccessUnlessGranted('projet.is_member', $tache);
+        }
 
         if (!$tache || $tache->getProjet()->isArchive()) {
             return $this->redirectToRoute('app_projets');

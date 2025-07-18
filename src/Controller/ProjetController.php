@@ -24,9 +24,12 @@ class ProjetController extends AbstractController
     #[Route('/projets', name: 'app_projets')]
     public function projets(): Response
     {
-        $projets = $this->projetRepository->findBy([
-            'archive' => false,
-        ]);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $projets = $this->projetRepository->findAll();
+        } else {
+            $user = $this->getUser();
+            $projets = $this->projetRepository->findNonArchivedByEmploye($user);
+        }
 
         return $this->render('projet/liste.html.twig', [
             'projets' => $projets,
@@ -61,8 +64,18 @@ class ProjetController extends AbstractController
         $statuts = $this->statutRepository->findAll();
         $projet = $this->projetRepository->find($id);
 
-        if (!$projet || $projet->isArchive()) {
-            return $this->redirectToRoute('app_projets');
+        if ($projet) {
+            $this->denyAccessUnlessGranted('projet.is_member', $projet);
+        }
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            if (!$projet) {
+                return $this->redirectToRoute('app_projets');
+            }
+        } else {
+            if (!$projet || $projet->isArchive()) {
+                return $this->redirectToRoute('app_projets');
+            }
         }
 
         return $this->render('projet/projet.html.twig', [
@@ -93,8 +106,18 @@ class ProjetController extends AbstractController
     {
         $projet = $this->projetRepository->find($id);
 
-        if (!$projet || $projet->isArchive()) {
-            return $this->redirectToRoute('app_projets');
+        if ($projet) {
+            $this->denyAccessUnlessGranted('projet.is_member', $projet);
+        }
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            if (!$projet) {
+                return $this->redirectToRoute('app_projets');
+            }
+        } else {
+            if (!$projet || $projet->isArchive()) {
+                return $this->redirectToRoute('app_projets');
+            }
         }
 
         $form = $this->createForm(ProjetType::class, $projet);
